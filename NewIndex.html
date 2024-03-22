@@ -8,117 +8,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
-
     <style>
+        /* Add your custom CSS styles here */
         body {
+            background-color: #f8f8f8;
             font-family: Arial, sans-serif;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #444;
+        }
+        p {
             line-height: 1.6;
-            color: #333333;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
         }
-        header {
-            background-color: #323232;
-            color: #ffffff;
-            padding: 20px 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2em;
-        }
-        nav {
-            margin-top: 20px;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav ul li:last-child {
-            margin-right: 0;
-        }
-        nav ul li a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
-        section {
-            padding: 40px 0;
-        }
-        section h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .col {
-            flex: 1;
-            margin: 0 10px;
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        .col img {
-            width: 100%;
-            height: auto;
-        }
-        .col h3 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .col p {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-        }
-        footer p {
-            margin-bottom: 20px;
-        }
-        footer a {
-            text-decoration: none;
-            color: #ffffff;
-            background-color: #323232;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-        footer a:hover {
-            background-color: #444444;
-        }
+        /* Add more custom styles as needed */
     </style>
 </head>
-<body>
+<body class="is-preload">
+    <!-- Nav -->
+    <nav id="nav">
+        <ul class="container">
+            <li><a href="#top">Top</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <!-- Header -->
-    <header>
-        <h1>Certified Monster by Christopher Champagne</h1>
-        <nav>
-            <ul>
-                <li><a href="#top">Top</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Intro -->
+    <!-- Introduction Section -->
     <article id="top" class="wrapper style1">
         <div class="container">
             <div class="row">
@@ -127,22 +44,24 @@
                 </div>
                 <div class="col-8 col-7-large col-12-medium">
                     <header>
-                        <h1><br>Christopher Champagne</strong></h1>
+                        <h1>Christopher Champagne</h1>
                     </header>
-                    <p><strong>My Passions and Experiences</strong>,<br>Everything that I Love in Life from Health and Wellness to Technology. <a href="https://x.com/CERTIFIEDMONST1"><strong>Certified Monster</strong></a> - A true monster lives eats and breathes passion and dedication never for moment letting up on their goals and aspirations.</p>
+                    <p>Passionate, loving father living life to the fullest. Born in 1975, Southern California.</p>
+                    <p>This is my story, these are my experiences, and what makes me excited to be alive!</p>
                 </div>
             </div>
         </div>
     </article>
-
-    <!-- Work -->
+    
+    <!-- Work Section -->
     <article id="work" class="wrapper style2">
         <div class="container">
             <header>
                 <h2>Here's all the stuff I do.</h2>
-                <p>My biggest passions are technology, health/wellness, and Living Life to the Fullest.</p>
+                <p>My biggest passions are technology, health/wellness, and living life to the fullest.</p>
             </header>
             <div class="row aln-center">
+                <!-- Add your work sections with images and descriptions here -->
                 <div class="col-4 col-6-medium col-12-small">
                     <section class="box style1">
                         <span class="image fit"><img src="images/Screenshot_20220917-112649_Facebook (2).jpg" alt="" /></span>
@@ -150,58 +69,44 @@
                         <p>Authorized ADT Dealer and Low Voltage Specialist.</p>
                     </section>
                 </div>
-                <div class="col-4 col-6-medium col-12-small">
-                    <section class="box style1">
-                        <span class="image fit"><img src="images/Screenshot_20220917-121314_Facebook.jpg" alt="" /></span>
-                        <h3>BJJ & MMA</h3>
-                        <p>3rd Generation Martial Artist and Coach</p>
-                    </section>
-                </div>
-                <div class="col-4 col-6-medium col-12-small">
-                    <section class="box style1">
-                        <span class="image fit"><img src="images/Screenshot_20220917-112709_Facebook (1).jpg" alt="" /></span>
-                        <h3>Family & Friends</h3>
-                        <p>My why and the reason I do what I do.</p>
-                    </section>
-                </div>
+                <!-- Add more work sections as needed -->
             </div>
             <footer>
-                <p>'What you think you become. What you feel you attract. What you imagine you create.'</p>
+                <p>“If you love what you do, you'll never work a day in your life.”</p>
                 <a href="#portfolio" class="button large scrolly">See some of my recent work</a>
             </footer>
         </div>
     </article>
 
-    <!-- Portfolio -->
+    <!-- Portfolio Section -->
     <article id="portfolio" class="wrapper style3">
         <div class="container">
             <header>
-                <h2>Here’s some of the things I've been up to Recently:</h2>
-                <p>Living my Best Life, all the glory to God</p>
+                <h2>Here’s some of the things I've been up to recently:</h2>
+                <p>Living my best life, all the glory to God.</p>
             </header>
+            <!-- Add your portfolio items here -->
             <div class="row">
-                <!-- Add portfolio items here -->
+                <!-- Portfolio items go here -->
             </div>
             <footer>
+                <p>'What you think you become. What you feel you attract. What you imagine you create.'</p>
                 <a href="#contact" class="button large scrolly">Get in touch with me</a>
             </footer>
         </div>
     </article>
 
-    <!-- Contact -->
+    <!-- Contact Section -->
     <article id="contact" class="wrapper style4">
         <div class="container medium">
             <header>
-                <h2>CONTACT ME
-.</h2>
-                <p>Lets work on Something?.</p>
+                <h2>Contact me.</h2>
+                <p>Let's work on something?</p>
             </header>
             <div class="row">
                 <div class="col-12">
-                    <form
-                        action="https://formspree.io/f/mwkzlrjj"
-                        method="POST"
-                    >
+                    <!-- Add your contact form here -->
+                    <form action="https://formspree.io/f/mwkzlrjj" method="POST">
                         <label>
                             Your email:
                             <input type="email" name="email">
@@ -216,6 +121,7 @@
                 <div class="col-12">
                     <hr />
                     <h3>Find me on ...</h3>
+                    <!-- Add your social media links here -->
                     <ul class="social">
                         <li><a href="https://x.com/CERTIFIEDMONST1" class="icon brands fa-twitter"><span class="label">X</span></a></li>
                         <li><a href="https://www.facebook.com/chrischampagne247" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
