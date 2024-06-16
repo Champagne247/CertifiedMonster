@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#SmartTokViral Morning Show</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        .segment {
+            width: 100%;
+            max-width: 600px;
+            margin: 10px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .segment h2 {
+            margin-top: 0;
+        }
+        .toggle-buttons {
+            margin: 20px 0;
+        }
+        .toggle-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle-buttons">
+        <button onclick="toggleSegment('intro')">Intro and Headlines</button>
+        <button onclick="toggleSegment('news')">Detailed News Report</button>
+        <button onclick="toggleSegment('community')">Community Spotlight</button>
+        <button onclick="toggleSegment('reviews')">Reviews and Recommendations</button>
+        <button onclick="toggleSegment('fun')">Fun and Interactive</button>
+        <button onclick="toggleSegment('closing')">Closing and Teasers</button>
+    </div>
+
+    <div id="intro" class="segment">
+        <h2>Intro and Headlines</h2>
+        <p>Welcome to the #$martTokViral Morning Show! Here are today's top headlines...</p>
+    </div>
+
+    <div id="news" class="segment">
+        <h2>Detailed News Report</h2>
+        <p>In-depth coverage of today's significant news story...</p>
+    </div>
+
+    <div id="community" class="segment">
+        <h2>Community Spotlight</h2>
+        <p>Highlighting a community member, local business, or event...</p>
+    </div>
+
+    <div id="reviews" class="segment">
+        <h2>Reviews and Recommendations</h2>
+        <p>Detailed review of a trending product or service...</p>
+    </div>
+
+    <div id="fun" class="segment">
+        <h2>Fun and Interactive</h2>
+        <p>Engage with fun polls, quizzes, and challenges...</p>
+    </div>
+
+    <div id="closing" class="segment">
+        <h2>Closing and Teasers</h2>
+        <p>Summary of the show and what's coming up next...</p>
+    </div>
+
+    <script>
+        function toggleSegment(segmentId) {
+            var segment = document.getElementById(segmentId);
+            if (segment.style.display === "none" || segment.style.display === "") {
+                segment.style.display = "block";
+            } else {
+                segment.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
