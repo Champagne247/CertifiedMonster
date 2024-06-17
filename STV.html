@@ -106,7 +106,7 @@
 </head>
 <body>
     <header>
-        <h1>#SmartTokViral Morning Show</h1>
+        <h1 id="headerTitle">#SmartTokViral Morning Show</h1>
     </header>
 
     <div class="toggle-buttons">
@@ -165,6 +165,7 @@
         function toggleSegment(segmentId) {
             var segment = document.getElementById(segmentId);
             var mainContainer = document.getElementById('mainContainer');
+            var headerTitle = document.getElementById('headerTitle');
            
             if (segmentId === 'intro') {
                 // Hide all other segments
@@ -172,11 +173,14 @@
                 allSegments.forEach(function(seg) {
                     seg.style.display = 'none';
                 });
+
+                // Hide header title initially
+                headerTitle.style.display = 'none';
                
                 // Show the intro segment
                 segment.style.display = 'block';
                
-                // Start blank for 5 seconds
+                // Start blank for 3 seconds
                 setTimeout(function() {
                     // Play the video
                     var video = document.getElementById('introVideo');
@@ -186,8 +190,9 @@
                     video.onended = function() {
                         mainContainer.classList.add('minimized');
                         segment.classList.remove('fullscreen');
+                        headerTitle.style.display = 'block';
                     };
-                }, 5000);
+                }, 3000);
             } else {
                 // Toggle visibility of the clicked segment
                 if (segment.style.display === "none" || segment.style.display === "") {
