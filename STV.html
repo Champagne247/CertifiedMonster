@@ -88,6 +88,27 @@
             border-radius: 8px;
             margin-bottom: 20px;
         }
+        #intro {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            z-index: 10;
+        }
+        #intro.fullscreen video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #intro.minimized video {
+            width: 200px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -104,17 +125,14 @@
         <button onclick="toggleSegment('closing')">Closing and Teasers</button>
     </div>
 
-    <div class="container">
-        <div id="intro" class="segment">
-            <video controls>
-                <source src="Stvlogo-intro.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <h2>Intro and Headlines</h2>
-            <p>Welcome to the #$martTokViral Morning Show! Here are today's top headlines...</p>
-            <div class="highlight">Breaking News: Major event happening in the community right now!</div>
-        </div>
+    <div id="intro" class="segment">
+        <video id="introVideo">
+            <source src="Screen_Recording_20240617_063516_Chrome.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
+    <div class="container">
         <div id="news" class="segment">
             <h2>Detailed News Report</h2>
             <img src="https://via.placeholder.com/800x400" alt="News Image">
@@ -153,10 +171,36 @@
     <script>
         function toggleSegment(segmentId) {
             var segment = document.getElementById(segmentId);
-            if (segment.style.display === "none" || segment.style.display === "") {
-                segment.style.display = "block";
+            if (segmentId === 'intro') {
+                // Hide all other segments
+                var allSegments = document.querySelectorAll('.segment');
+                allSegments.forEach(function(seg) {
+                    seg.style.display = 'none';
+                });
+               
+                // Show the intro segment
+                segment.style.display = 'flex';
+               
+                // Start blank for 5 seconds
+                setTimeout(function() {
+                    // Enter full screen mode
+                    segment.classList.add('fullscreen');
+                    var video = document.getElementById('introVideo');
+                    video.play();
+
+                    // Minimize after video ends
+                    video.onended = function() {
+                        segment.classList.remove('fullscreen');
+                        segment.classList.add('minimized');
+                    };
+                }, 5000);
             } else {
-                segment.style.display = "none";
+                // Toggle visibility of the clicked segment
+                if (segment.style.display === "none" || segment.style.display === "") {
+                    segment.style.display = "block";
+                } else {
+                    segment.style.display = "none";
+                }
             }
         }
     </script>
