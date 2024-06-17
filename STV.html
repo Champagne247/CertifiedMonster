@@ -38,6 +38,7 @@
             padding: 20px;
             background-color: #111;
             box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            position: relative;
         }
         .segment {
             margin-bottom: 20px;
@@ -83,31 +84,23 @@
         .toggle-buttons button:hover {
             background-color: #444;
         }
-        video {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
         #intro {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             display: none;
-            justify-content: center;
-            align-items: center;
-            background-color: #000;
-            z-index: 10;
-        }
-        #intro.fullscreen video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
         }
-        #intro.minimized video {
+        #introVideo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .container.minimized #introVideo {
             width: 200px;
             height: auto;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
@@ -125,14 +118,14 @@
         <button onclick="toggleSegment('closing')">Closing and Teasers</button>
     </div>
 
-    <div id="intro" class="segment">
-        <video id="introVideo">
-            <source src="Screen_Recording_20240617_063516_Chrome.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
+    <div class="container" id="mainContainer">
+        <div id="intro" class="segment">
+            <video id="introVideo">
+                <source src="Screen_Recording_20240617_063516_Chrome.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
 
-    <div class="container">
         <div id="news" class="segment">
             <h2>Detailed News Report</h2>
             <img src="https://via.placeholder.com/800x400" alt="News Image">
@@ -171,6 +164,8 @@
     <script>
         function toggleSegment(segmentId) {
             var segment = document.getElementById(segmentId);
+            var mainContainer = document.getElementById('mainContainer');
+           
             if (segmentId === 'intro') {
                 // Hide all other segments
                 var allSegments = document.querySelectorAll('.segment');
@@ -179,19 +174,18 @@
                 });
                
                 // Show the intro segment
-                segment.style.display = 'flex';
+                segment.style.display = 'block';
                
                 // Start blank for 5 seconds
                 setTimeout(function() {
-                    // Enter full screen mode
-                    segment.classList.add('fullscreen');
+                    // Play the video
                     var video = document.getElementById('introVideo');
                     video.play();
-
+                   
                     // Minimize after video ends
                     video.onended = function() {
+                        mainContainer.classList.add('minimized');
                         segment.classList.remove('fullscreen');
-                        segment.classList.add('minimized');
                     };
                 }, 5000);
             } else {
