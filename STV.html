@@ -87,20 +87,30 @@
         #intro {
             display: none;
             width: 100%;
-            height: 100%;
+            height: 100vh; /* Take full viewport height */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999; /* Ensure it's on top */
         }
         #introVideo {
             width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: 0; /* Remove border radius for full width */
         }
         .container.minimized #introVideo {
+            display: none; /* Hide video when minimized */
+        }
+        .banner {
+            display: none; /* Initially hide banner */
             width: 100%;
-            height: auto;
-            position: absolute;
+            background-color: #000;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
             top: 0;
             left: 0;
-            transform: translateX(0);
+            z-index: 99; /* Lower z-index than intro for stacking */
         }
     </style>
 </head>
@@ -131,10 +141,6 @@
             <img src="https://via.placeholder.com/800x400" alt="News Image">
             <p>In-depth coverage of today's significant news story...</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan tortor. Duis cursus erat ac massa tincidunt, vel tincidunt lorem facilisis.</p>
-            <script>
-                // Sample script for news segment
-                console.log('Detailed News Report script loaded');
-            </script>
         </div>
 
         <div id="community" class="segment">
@@ -142,10 +148,6 @@
             <img src="https://via.placeholder.com/800x400" alt="Community Image">
             <p>Highlighting a community member, local business, or event...</p>
             <p>Meet Jane Doe, a local artist making waves with her unique style and community engagement...</p>
-            <script>
-                // Sample script for community spotlight segment
-                console.log('Community Spotlight script loaded');
-            </script>
         </div>
 
         <div id="reviews" class="segment">
@@ -153,10 +155,6 @@
             <img src="https://via.placeholder.com/800x400" alt="Product Image">
             <p>Detailed review of a trending product or service...</p>
             <div class="highlight">Product of the week: The latest gadget everyone is talking about!</div>
-            <script>
-                // Sample script for reviews and recommendations segment
-                console.log('Reviews and Recommendations script loaded');
-            </script>
         </div>
 
         <div id="fun" class="segment">
@@ -164,21 +162,17 @@
             <p>Engage with fun polls, quizzes, and challenges...</p>
             <p>Quiz: What kind of #SmartTokViral fan are you?</p>
             <p>Poll: What's your favorite segment of the show?</p>
-            <script>
-                // Sample script for fun and interactive segment
-                console.log('Fun and Interactive script loaded');
-            </script>
         </div>
 
         <div id="closing" class="segment">
             <h2>Closing and Teasers</h2>
             <p>Summary of the show and what's coming up next...</p>
             <p>Thank you for joining us! Stay tuned for tomorrow's episode where we will discuss...</p>
-            <script>
-                // Sample script for closing and teasers segment
-                console.log('Closing and Teasers script loaded');
-            </script>
         </div>
+    </div>
+
+    <div class="banner" id="banner">
+        <h1>#SmartTokViral Morning Show</h1>
     </div>
 
     <script>
@@ -186,6 +180,8 @@
             var segment = document.getElementById(segmentId);
             var mainContainer = document.getElementById('mainContainer');
             var headerTitle = document.getElementById('headerTitle');
+            var introVideo = document.getElementById('introVideo');
+            var banner = document.getElementById('banner');
            
             if (segmentId === 'intro') {
                 // Hide all other segments
@@ -203,14 +199,14 @@
                 // Start blank for 3 seconds
                 setTimeout(function() {
                     // Play the video
-                    var video = document.getElementById('introVideo');
-                    video.play();
+                    introVideo.play();
                    
                     // Minimize after video ends
-                    video.onended = function() {
+                    introVideo.onended = function() {
                         mainContainer.classList.add('minimized');
                         segment.classList.remove('fullscreen');
                         headerTitle.style.display = 'block';
+                        banner.style.display = 'block'; // Show the banner
                     };
                 }, 3000);
             } else {
