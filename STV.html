@@ -43,6 +43,8 @@
         .segment {
             margin-bottom: 20px;
             display: none;
+            background-color: #000; /* Set the background color to black */
+            padding: 20px; /* Add padding for spacing */
         }
         .segment h2 {
             font-size: 20px;
@@ -131,6 +133,10 @@
             <img src="https://via.placeholder.com/800x400" alt="News Image">
             <p>In-depth coverage of today's significant news story...</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan tortor. Duis cursus erat ac massa tincidunt, vel tincidunt lorem facilisis.</p>
+            <script>
+                var newsScript = "In today's news, a significant event unfolded...";
+                console.log("News script loaded.");
+            </script>
         </div>
 
         <div id="community" class="segment">
@@ -138,6 +144,10 @@
             <img src="https://via.placeholder.com/800x400" alt="Community Image">
             <p>Highlighting a community member, local business, or event...</p>
             <p>Meet Jane Doe, a local artist making waves with her unique style and community engagement...</p>
+            <script>
+                var communityScript = "Meet John Doe, a local hero who has...";
+                console.log("Community script loaded.");
+            </script>
         </div>
 
         <div id="reviews" class="segment">
@@ -145,6 +155,10 @@
             <img src="https://via.placeholder.com/800x400" alt="Product Image">
             <p>Detailed review of a trending product or service...</p>
             <div class="highlight">Product of the week: The latest gadget everyone is talking about!</div>
+            <script>
+                var reviewsScript = "Today we review the latest tech gadget that...";
+                console.log("Reviews script loaded.");
+            </script>
         </div>
 
         <div id="fun" class="segment">
@@ -152,12 +166,20 @@
             <p>Engage with fun polls, quizzes, and challenges...</p>
             <p>Quiz: What kind of #SmartTokViral fan are you?</p>
             <p>Poll: What's your favorite segment of the show?</p>
+            <script>
+                var funScript = "Take this quiz to find out which character from...";
+                console.log("Fun script loaded.");
+            </script>
         </div>
 
         <div id="closing" class="segment">
             <h2>Closing and Teasers</h2>
             <p>Summary of the show and what's coming up next...</p>
             <p>Thank you for joining us! Stay tuned for tomorrow's episode where we will discuss...</p>
+            <script>
+                var closingScript = "Thank you for joining us today. Tune in tomorrow for...";
+                console.log("Closing script loaded.");
+            </script>
         </div>
     </div>
 
@@ -206,6 +228,7 @@
         // Debugging
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Document loaded');
+            console.log("Scripts loaded."); // Confirm scripts are loaded
             var buttons = document.querySelectorAll('.toggle-buttons button');
             buttons.forEach(function(button) {
                 console.log(button.textContent + ' button loaded');
