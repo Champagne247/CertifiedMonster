@@ -85,6 +85,7 @@
         }
         .intro-banner video {
             height: 100%;
+            width: 100%;
             border-radius: 8px;
         }
         .container {
@@ -95,20 +96,20 @@
             overflow-y: auto;
         }
         .left-side {
-            width: 30%; /* Reserved space for host camera */
+            width: 25%; /* Reserved space for host camera */
             background-color: #111;
         }
         .right-side {
-            width: 70%; /* Main show content */
+            width: 75%; /* Main show content */
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             padding: 20px;
             box-sizing: border-box;
-            justify-content: flex-start;
+            align-items: flex-start;
         }
         .segment {
-            width: calc(50% - 20px);
-            margin: 10px;
+            width: 100%;
+            margin: 10px 0;
             padding: 20px;
             background-color: #000;
             display: none; /* Initially hidden */
