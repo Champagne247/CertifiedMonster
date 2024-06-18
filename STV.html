@@ -16,7 +16,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh; /* Full viewport height */
+            height: 100vh;
+            overflow: hidden;
         }
         header {
             width: 100%;
@@ -24,8 +25,8 @@
             padding: 20px 0;
             text-align: center;
             border-bottom: 2px solid #555;
-            z-index: 100; /* Ensure header is on top */
             position: relative;
+            z-index: 100; /* Ensure header is on top */
         }
         header h1 {
             margin: 0;
@@ -34,24 +35,82 @@
             text-transform: uppercase;
             color: #fff;
         }
+        .toggle-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 100; /* Ensure buttons are on top */
+        }
+        .toggle-buttons button {
+            margin: 5px 0;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+        }
+        .toggle-buttons button:hover {
+            background-color: #444;
+        }
+        #intro {
+            width: 100%;
+            height: 50vh;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        #introVideo {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        .intro-banner {
+            width: 100%;
+            height: 50px;
+            background-color: #000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            z-index: 100; /* Ensure banner is on top */
+        }
+        .intro-banner img {
+            height: 100%;
+            border-radius: 8px;
+        }
         .container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+            flex-direction: row;
             width: 100%;
-            max-width: 1200px; /* Adjust max-width as needed */
-            margin-top: 20px;
+            flex: 1;
+            overflow-y: auto;
+        }
+        .left-side {
+            width: 30%; /* Reserved space for host camera */
+            background-color: #111;
+        }
+        .right-side {
+            width: 70%; /* Main show content */
+            display: flex;
+            flex-wrap: wrap;
             padding: 20px;
             box-sizing: border-box;
-            flex: 1; /* Fill remaining vertical space */
-            align-self: flex-start; /* Align to start (top) of flex container */
+            justify-content: flex-start;
         }
         .segment {
-            margin-bottom: 20px;
+            width: calc(50% - 20px);
+            margin: 10px;
             padding: 20px;
             background-color: #000;
-            flex: 0 0 calc(50% - 40px); /* Two segments per row */
-            max-width: calc(50% - 40px);
+            display: none; /* Initially hidden */
         }
         .segment h2 {
             font-size: 20px;
@@ -77,73 +136,6 @@
             margin: 10px 0;
             color: #fff;
         }
-        .toggle-buttons {
-            margin: 20px 0;
-            z-index: 100; /* Ensure buttons are on top */
-            position: relative;
-        }
-        .toggle-buttons button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: 1px solid #555;
-            border-radius: 4px;
-            cursor: pointer;
-            background-color: #333;
-            color: #fff;
-        }
-        .toggle-buttons button:hover {
-            background-color: #444;
-        }
-        #intro {
-            width: 100%;
-            height: 50vh; /* Initial height for intro */
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        #introVideo {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .intro-banner {
-            width: 100%;
-            max-width: 1200px; /* Adjust max-width as needed */
-            margin: 0 auto;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transform: translateY(-50%);
-            z-index: 1;
-            display: none;
-        }
-        .intro-banner img {
-            width: 100%;
-            border-radius: 8px;
-        }
-        .intro-banner.active {
-            display: block;
-        }
-        .custom-container {
-            width: 100%;
-            max-width: 1200px; /* Adjust max-width as needed */
-            margin: 20px auto; /* Adjust margin as needed */
-            padding: 10px;
-            box-sizing: border-box;
-            background-color: #222;
-            border-radius: 8px;
-            text-align: center;
-            position: relative;
-            z-index: 10; /* Ensure it's above other content */
-        }
-        .custom-container img {
-            max-width: 100%;
-            border-radius: 8px;
-        }
     </style>
 </head>
 <body>
@@ -160,58 +152,53 @@
         <button onclick="toggleSegment('closing')">Closing and Teasers</button>
     </div>
 
-    <div class="container" id="mainContainer">
-        <div id="intro">
-            <video id="introVideo">
-                <source src="Stvlogo-intro2.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="intro-banner" id="introBanner">
-                <img src="logo.png" alt="Morning Show Logo">
-            </div>
-        </div>
-
-        <div id="news" class="segment">
-            <h2>Detailed News Report</h2>
-            <img src="https://via.placeholder.com/800x400" alt="News Image">
-            <p>In-depth coverage of today's significant news story...</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan tortor. Duis cursus erat ac massa tincidunt, vel tincidunt lorem facilisis.</p>
-        </div>
-
-        <div id="community" class="segment">
-            <h2>Community Spotlight</h2>
-            <img src="https://via.placeholder.com/800x400" alt="Community Image">
-            <p>Highlighting a community member, local business, or event...</p>
-            <p>Meet Jane Doe, a local artist making waves with her unique style and community engagement...</p>
-        </div>
-
-        <div id="reviews" class="segment">
-            <h2>Reviews and Recommendations</h2>
-            <img src="https://via.placeholder.com/800x400" alt="Product Image">
-            <p>Detailed review of a trending product or service...</p>
-            <div class="highlight">Product of the week: The latest gadget everyone is talking about!</div>
-        </div>
-
-        <div id="fun" class="segment">
-            <h2>Fun and Interactive</h2>
-            <p>Engage with fun polls, quizzes, and challenges...</p>
-            <p>Quiz: What kind of #SmartTokViral fan are you?</p>
-            <p>Poll: What's your favorite segment of the show?</p>
-        </div>
-
-        <div id="closing" class="segment">
-            <h2>Closing and Teasers</h2>
-            <p>Summary of the show and what's coming up next...</p>
-            <p>Thank you for joining us! Stay tuned for tomorrow's episode where we will discuss...</p>
+    <div id="intro">
+        <video id="introVideo" autoplay>
+            <source src="Stvlogo-intro2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="intro-banner" id="introBanner">
+            <img src="logo.png" alt="Morning Show Logo">
         </div>
     </div>
 
-    <div class="custom-container" id="customContainer">
-        <!-- Content for the custom container goes here -->
-        <h2>Custom Container</h2>
-        <p>This is a custom container for your buttons or other content that should appear above the segments.</p>
-        <p>It will be positioned below the buttons and above the main content.</p>
-        <p>This could be your chat area or any other relevant content.</p>
+    <div class="container">
+        <div class="left-side"></div>
+        <div class="right-side">
+            <div id="news" class="segment">
+                <h2>Detailed News Report</h2>
+                <img src="https://via.placeholder.com/800x400" alt="News Image">
+                <p>In-depth coverage of today's significant news story...</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan tortor. Duis cursus erat ac massa tincidunt, vel tincidunt lorem facilisis.</p>
+            </div>
+
+            <div id="community" class="segment">
+                <h2>Community Spotlight</h2>
+                <img src="https://via.placeholder.com/800x400" alt="Community Image">
+                <p>Highlighting a community member, local business, or event...</p>
+                <p>Meet Jane Doe, a local artist making waves with her unique style and community engagement...</p>
+            </div>
+
+            <div id="reviews" class="segment">
+                <h2>Reviews and Recommendations</h2>
+                <img src="https://via.placeholder.com/800x400" alt="Product Image">
+                <p>Detailed review of a trending product or service...</p>
+                <div class="highlight">Product of the week: The latest gadget everyone is talking about!</div>
+            </div>
+
+            <div id="fun" class="segment">
+                <h2>Fun and Interactive</h2>
+                <p>Engage with fun polls, quizzes, and challenges...</p>
+                <p>Quiz: What kind of #SmartTokViral fan are you?</p>
+                <p>Poll: What's your favorite segment of the show?</p>
+            </div>
+
+            <div id="closing" class="segment">
+                <h2>Closing and Teasers</h2>
+                <p>Summary of the show and what's coming up next...</p>
+                <p>Thank you for joining us! Stay tuned for tomorrow's episode where we will discuss...</p>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -219,26 +206,27 @@
             var segment = document.getElementById(segmentId);
             var introVideo = document.getElementById('introVideo');
             var introBanner = document.getElementById('introBanner');
-           
+
             if (segmentId === 'intro') {
-                // Show the intro segment
-                segment.style.height = '100vh'; // Expand intro to full viewport height
-               
-                // Play the video
                 introVideo.play();
-               
-                // Minimize after video ends
+
                 introVideo.onended = function() {
-                    introBanner.classList.add('active');
+                    introBanner.style.display = 'flex';
+                    introVideo.style.display = 'none';
+                    document.getElementById('intro').style.height = '50px';
                 };
             } else {
-                // Hide the intro segment
-                segment.style.height = 'auto';
-
-                // Show the selected segment
+                var segments = document.querySelectorAll('.segment');
+                segments.forEach(function(seg) {
+                    seg.style.display = 'none';
+                });
                 segment.style.display = 'block';
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('introVideo').play();
+        });
     </script>
 </body>
 </html>
