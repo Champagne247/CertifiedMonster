@@ -15,17 +15,63 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
             height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
+        }
+        header {
+            width: 100%;
+            background-color: #000;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #555;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .segment {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .segment h2 {
+            font-size: 20px;
+            margin-top: 0;
+            border-bottom: 2px solid #555;
+            padding-bottom: 5px;
+            color: #fff;
+        }
+        .segment p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .segment img, .intro-video {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            color: #fff;
         }
         .toggle-buttons {
-            width: 100%;
+            position: fixed;
+            bottom: 10px;
             display: flex;
             justify-content: center;
+            width: 100%;
             z-index: 100;
-            padding: 10px 0;
-            background-color: #000;
-            border-bottom: 2px solid #555;
         }
         .toggle-buttons button {
             margin: 5px;
@@ -40,255 +86,65 @@
         .toggle-buttons button:hover {
             background-color: #444;
         }
-        header {
-            width: 100%;
-            background-color: #000;
-            padding: 20px 0;
-            text-align: center;
-            border-bottom: 2px solid #555;
-            position: relative;
-            z-index: 50;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-        #intro {
-            width: 100%;
-            height: 50vh;
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        #introVideo {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .intro-banner {
-            width: 100%;
-            height: auto;
-            background-color: #000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            top: 0;
-            z-index: 50;
-        }
-        .intro-banner img {
-            width: 100%;
-            height: auto;
-        }
-        .container {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            flex: 1;
-            overflow-y: auto;
-        }
-        .left-side {
-            width: 25%;
-            background-color: #111;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        .right-side {
-            width: 75%;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            box-sizing: border-box;
-            align-items: flex-start;
-        }
-        .segment {
-            width: 100%;
-            margin: 10px 0;
-            padding: 20px;
-            background-color: #000;
-            display: none;
-        }
-        .segment h2 {
-            font-size: 20px;
-            margin-top: 0;
-            border-bottom: 2px solid #555;
-            padding-bottom: 5px;
-            color: #fff;
-        }
-        .segment p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #ddd;
-        }
-        .segment img {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-        .segment .highlight {
-            background-color: #333;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            color: #fff;
-        }
-        .live-video {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .chatbox {
-            width: 100%;
-            height: 150px;
-            background-color: #222;
-            border: 1px solid #555;
-            border-radius: 4px;
-            padding: 10px;
-            box-sizing: border-box;
-            color: #fff;
-            margin-top: 10px;
-            overflow-y: auto;
-        }
-        .interaction-buttons {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-        .interaction-buttons button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: 1px solid #555;
-            border-radius: 4px;
-            cursor: pointer;
-            background-color: #333;
-            color: #fff;
-        }
-        .interaction-buttons button:hover {
-            background-color: #444;
-        }
     </style>
 </head>
 <body>
-    <div class="toggle-buttons">
-        <button onclick="toggleSegment('intro')">Intro and Headlines</button>
-        <button onclick="toggleSegment('news')">Detailed News Report</button>
-        <button onclick="toggleSegment('community')">Community Spotlight</button>
-        <button onclick="toggleSegment('reviews')">Reviews and Recommendations</button>
-        <button onclick="toggleSegment('fun')">Fun and Interactive</button>
-        <button onclick="toggleSegment('closing')">Closing and Teasers</button>
-    </div>
-
     <header>
-        <h1 id="headerTitle">#SmartTokViral Morning Show</h1>
+        <h1>#SmartTokViral Morning Show</h1>
     </header>
-
-    <div id="intro">
-        <video id="introVideo" autoplay>
+    <div class="segment" id="intro">
+        <video class="intro-video" autoplay>
             <source src="Stvlogo-intro2.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div class="intro-banner" id="introBanner">
-            <img src="STVbanner.jpg" alt="STV Banner">
-        </div>
     </div>
-
-    <div class="container">
-        <div class="left-side">
-            <video class="live-video" autoplay>
-                <source src="live-stream.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="chatbox" id="chatbox">
-                <!-- Chat messages will appear here -->
-                <p>John: Good morning!</p>
-                <p>Jane: Excited for today's show!</p>
-            </div>
-            <div class="interaction-buttons">
-                <button>Tap</button>
-                <button>Comment</button>
-                <button>Share</button>
-            </div>
-        </div>
-        <div class="right-side">
-            <div id="news" class="segment">
-                <h2>Detailed News Report</h2>
-                <img src="https://via.placeholder.com/800x400" alt="News Image">
-                <p>In-depth coverage of today's significant news story...</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan tortor. Duis cursus erat ac massa tincidunt, vel tincidunt lorem facilisis.</p>
-            </div>
-
-            <div id="community" class="segment">
-                <h2>Community Spotlight</h2>
-                <img src="https://via.placeholder.com/800x400" alt="Community Image">
-                <p>Highlighting a community member, local business, or event...</p>
-                <p>Meet Jane Doe, a local artist making waves with her unique style and community engagement...</p>
-            </div>
-
-            <div id="reviews" class="segment">
-                <h2>Reviews and Recommendations</h2>
-                <img src="https://via.placeholder.com/800x400" alt="Product Image">
-                <p>Detailed review of a trending product or service...</p>
-                <div class="highlight">Product of the week: The latest gadget everyone is talking about!</div>
-            </div>
-
-            <div id="fun" class="segment">
-                <h2>Fun and Interactive</h2>
-                <p>Engage with fun polls, quizzes, and challenges...</p>
-                <p>Quiz: What kind of #SmartTokViral fan are you?</p>
-                <p>Poll: What's your favorite segment of the show?</p>
-            </div>
-
-            <div id="closing" class="segment">
-                <h2>Closing and Teasers</h2>
-                <p>Summary of the show and what's coming up next...</p>
-                <p>Thank you for joining us! Stay tuned for tomorrow's episode where we will discuss...</p>
-            </div>
-        </div>
+    <div class="segment" id="news">
+        <h2>Detailed News Report</h2>
+        <img src="https://via.placeholder.com/800x400" alt="News Image">
+        <p>In-depth coverage of today's significant news story...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan tortor. Duis cursus erat ac massa tincidunt, vel tincidunt lorem facilisis.</p>
     </div>
-
+    <div class="segment" id="community">
+        <h2>Community Spotlight</h2>
+        <img src="https://via.placeholder.com/800x400" alt="Community Image">
+        <p>Highlighting a community member, local business, or event...</p>
+        <p>Meet Jane Doe, a local artist making waves with her unique style and community engagement...</p>
+    </div>
+    <div class="segment" id="reviews">
+        <h2>Reviews and Recommendations</h2>
+        <img src="https://via.placeholder.com/800x400" alt="Product Image">
+        <p>Detailed review of a trending product or service...</p>
+        <div class="highlight">Product of the week: The latest gadget everyone is talking about!</div>
+    </div>
+    <div class="segment" id="fun">
+        <h2>Fun and Interactive</h2>
+        <p>Engage with fun polls, quizzes, and challenges...</p>
+        <p>Quiz: What kind of #SmartTokViral fan are you?</p>
+        <p>Poll: What's your favorite segment of the show?</p>
+    </div>
+    <div class="segment" id="closing">
+        <h2>Closing and Teasers</h2>
+        <p>Summary of the show and what's coming up next...</p>
+        <p>Thank you for joining us! Stay tuned for tomorrow's episode where we will discuss...</p>
+    </div>
+    <div class="toggle-buttons">
+        <button onclick="toggleSegment('intro')">Intro</button>
+        <button onclick="toggleSegment('news')">News</button>
+        <button onclick="toggleSegment('community')">Community</button>
+        <button onclick="toggleSegment('reviews')">Reviews</button>
+        <button onclick="toggleSegment('fun')">Fun</button>
+        <button onclick="toggleSegment('closing')">Closing</button>
+    </div>
     <script>
         function toggleSegment(segmentId) {
-            var segment = document.getElementById(segmentId);
-            var introVideo = document.getElementById('introVideo');
-            var introBanner = document.getElementById('introBanner');
-
-            // Hide all segments
-            var segments = document.getElementsByClassName('segment');
-            for (var i = 0; i < segments.length; i++) {
-                segments[i].style.display = 'none';
-            }
-
-            // Show the selected segment
-            segment.style.display = 'block';
-
-            // Hide the intro video and banner if not the intro section
-
-            if (segmentId === 'intro') {
-                introVideo.play();
-
-                introVideo.onended = function() {
-                    introBanner.style.display = 'flex';
-                    introVideo.style.display = 'none';
-                    document.getElementById('intro').style.height = '50px';
-                };
-            } else {
-                var segments = document.querySelectorAll('.segment');
-                segments.forEach(function(seg) {
-                    seg.style.display = 'none';
-                });
-                segment.style.display = 'block';
-            }
+            var segments = document.querySelectorAll('.segment');
+            segments.forEach(function(segment) {
+                segment.style.display = 'none';
+            });
+            document.getElementById(segmentId).style.display = 'block';
         }
-
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('introVideo').play();
+            document.getElementById('intro').style.display = 'block';
         });
     </script>
 </body>
