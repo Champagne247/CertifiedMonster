@@ -37,14 +37,16 @@
         }
         .toggle-buttons {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             z-index: 100; /* Ensure buttons are on top */
+            visibility: hidden; /* Hide from the audience */
         }
         .toggle-buttons button {
-            margin: 5px 0;
+            margin: 5px;
             padding: 10px 20px;
             font-size: 16px;
             border: 1px solid #555;
@@ -80,7 +82,7 @@
             align-items: center;
             position: absolute;
             top: 0;
-            z-index: 100; /* Ensure banner is on top */
+            z-index: 50; /* Ensure banner is on top */
         }
         .intro-banner img {
             height: 100%;
@@ -139,10 +141,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1 id="headerTitle">#SmartTokViral Morning Show</h1>
-    </header>
-
     <div class="toggle-buttons">
         <button onclick="toggleSegment('intro')">Intro and Headlines</button>
         <button onclick="toggleSegment('news')">Detailed News Report</button>
@@ -151,6 +149,10 @@
         <button onclick="toggleSegment('fun')">Fun and Interactive</button>
         <button onclick="toggleSegment('closing')">Closing and Teasers</button>
     </div>
+
+    <header>
+        <h1 id="headerTitle">#SmartTokViral Morning Show</h1>
+    </header>
 
     <div id="intro">
         <video id="introVideo" autoplay>
