@@ -118,7 +118,7 @@
     </div>
 
     <div class="container" id="mainContainer">
-        <div id="intro" class="segment">
+        <div id="intro" class="segment active"> <!-- Initial segment is active -->
             <video id="introVideo">
                 <source src="Stvlogo-intro2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -173,7 +173,7 @@
             var banner = document.getElementById('banner');
            
             // Hide previous active segment
-            var currentActiveSegment = document.getElementById(currentSegment);
+            var currentActiveSegment = document.querySelector('.segment.active');
             if (currentActiveSegment) {
                 currentActiveSegment.classList.remove('active');
             }
