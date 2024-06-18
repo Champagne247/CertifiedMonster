@@ -16,6 +16,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            height: 100vh; /* Full viewport height */
         }
         header {
             width: 100%;
@@ -23,6 +24,8 @@
             padding: 20px 0;
             text-align: center;
             border-bottom: 2px solid #555;
+            z-index: 100; /* Ensure header is on top */
+            position: relative;
         }
         header h1 {
             margin: 0;
@@ -40,6 +43,8 @@
             margin-top: 20px;
             padding: 20px;
             box-sizing: border-box;
+            flex: 1; /* Fill remaining vertical space */
+            align-self: flex-start; /* Align to start (top) of flex container */
         }
         .segment {
             margin-bottom: 20px;
@@ -74,6 +79,8 @@
         }
         .toggle-buttons {
             margin: 20px 0;
+            z-index: 100; /* Ensure buttons are on top */
+            position: relative;
         }
         .toggle-buttons button {
             margin: 5px;
@@ -89,13 +96,12 @@
             background-color: #444;
         }
         #intro {
+            width: 100%;
+            height: 50vh; /* Initial height for intro */
+            background-color: #000;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            max-width: 100%; /* Full width */
-            height: auto;
-            background-color: #000;
             position: relative;
             overflow: hidden;
         }
@@ -119,8 +125,24 @@
             width: 100%;
             border-radius: 8px;
         }
-        .container.minimized .intro-banner {
+        .intro-banner.active {
             display: block;
+        }
+        .custom-container {
+            width: 100%;
+            max-width: 1200px; /* Adjust max-width as needed */
+            margin: 20px auto; /* Adjust margin as needed */
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #222;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            z-index: 10; /* Ensure it's above other content */
+        }
+        .custom-container img {
+            max-width: 100%;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -139,12 +161,12 @@
     </div>
 
     <div class="container" id="mainContainer">
-        <div id="intro" class="segment">
+        <div id="intro">
             <video id="introVideo">
                 <source src="Stvlogo-intro2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <div class="intro-banner">
+            <div class="intro-banner" id="introBanner">
                 <img src="logo.png" alt="Morning Show Logo">
             </div>
         </div>
@@ -154,10 +176,6 @@
             <img src="https://via.placeholder.com/800x400" alt="News Image">
             <p>In-depth coverage of today's significant news story...</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan tortor. Duis cursus erat ac massa tincidunt, vel tincidunt lorem facilisis.</p>
-            <script>
-                var newsScript = "In today's news, a significant event unfolded...";
-                console.log("News script loaded.");
-            </script>
         </div>
 
         <div id="community" class="segment">
@@ -165,10 +183,6 @@
             <img src="https://via.placeholder.com/800x400" alt="Community Image">
             <p>Highlighting a community member, local business, or event...</p>
             <p>Meet Jane Doe, a local artist making waves with her unique style and community engagement...</p>
-            <script>
-                var communityScript = "Meet John Doe, a local hero who has...";
-                console.log("Community script loaded.");
-            </script>
         </div>
 
         <div id="reviews" class="segment">
@@ -176,10 +190,6 @@
             <img src="https://via.placeholder.com/800x400" alt="Product Image">
             <p>Detailed review of a trending product or service...</p>
             <div class="highlight">Product of the week: The latest gadget everyone is talking about!</div>
-            <script>
-                var reviewsScript = "Today we review the latest tech gadget that...";
-                console.log("Reviews script loaded.");
-            </script>
         </div>
 
         <div id="fun" class="segment">
@@ -187,76 +197,48 @@
             <p>Engage with fun polls, quizzes, and challenges...</p>
             <p>Quiz: What kind of #SmartTokViral fan are you?</p>
             <p>Poll: What's your favorite segment of the show?</p>
-            <script>
-                var funScript = "Take this quiz to find out which character from...";
-                console.log("Fun script loaded.");
-            </script>
         </div>
 
         <div id="closing" class="segment">
             <h2>Closing and Teasers</h2>
             <p>Summary of the show and what's coming up next...</p>
             <p>Thank you for joining us! Stay tuned for tomorrow's episode where we will discuss...</p>
-            <script>
-                var closingScript = "Thank you for joining us today. Tune in tomorrow for...";
-                console.log("Closing script loaded.");
-            </script>
         </div>
+    </div>
+
+    <div class="custom-container" id="customContainer">
+        <!-- Content for the custom container goes here -->
+        <h2>Custom Container</h2>
+        <p>This is a custom container for your buttons or other content that should appear above the segments.</p>
+        <p>It will be positioned below the buttons and above the main content.</p>
+        <p>This could be your chat area or any other relevant content.</p>
     </div>
 
     <script>
         function toggleSegment(segmentId) {
             var segment = document.getElementById(segmentId);
-            var mainContainer = document.getElementById('mainContainer');
-            var headerTitle = document.getElementById('headerTitle');
             var introVideo = document.getElementById('introVideo');
-            var introBanner = document.querySelector('.intro-banner');
+            var introBanner = document.getElementById('introBanner');
            
             if (segmentId === 'intro') {
-                // Hide all other segments
-                var allSegments = document.querySelectorAll('.segment');
-                allSegments.forEach(function(seg) {
-                    seg.style.display = 'none';
-                });
-
                 // Show the intro segment
-                segment.style.display = 'flex';
+                segment.style.height = '100vh'; // Expand intro to full viewport height
                
                 // Play the video
                 introVideo.play();
                
                 // Minimize after video ends
                 introVideo.onended = function() {
-                    mainContainer.classList.add('minimized');
-                    introBanner.style.display = 'block';
-                    headerTitle.style.display = 'block';
+                    introBanner.classList.add('active');
                 };
             } else {
-                // Hide intro banner if switching away from intro
-                introBanner.style.display = 'none';
+                // Hide the intro segment
+                segment.style.height = 'auto';
 
                 // Show the selected segment
                 segment.style.display = 'block';
-
-                // Hide all other segments
-                var allSegments = document.querySelectorAll('.segment');
-                allSegments.forEach(function(seg) {
-                    if (seg.id !== segmentId) {
-                        seg.style.display = 'none';
-                    }
-                });
             }
         }
-
-        // Debugging
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Document loaded');
-            console.log("Scripts loaded."); // Confirm scripts are loaded
-            var buttons = document.querySelectorAll('.toggle-buttons button');
-            buttons.forEach(function(button) {
-                console.log(button.textContent + ' button loaded');
-            });
-        });
     </script>
 </body>
 </html>
