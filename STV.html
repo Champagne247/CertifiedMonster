@@ -98,9 +98,6 @@
             height: auto;
             border-radius: 0; /* Remove border radius for full width */
         }
-        .container.minimized #introVideo {
-            display: none; /* Hide video when minimized */
-        }
         .banner {
             display: none; /* Initially hide banner */
             width: 100%;
@@ -111,6 +108,9 @@
             top: 0;
             left: 0;
             z-index: 99; /* Lower z-index than intro for stacking */
+        }
+        .container.minimized {
+            padding-top: 100vh; /* Adjust container padding to account for intro height */
         }
     </style>
 </head>
