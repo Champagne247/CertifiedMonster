@@ -32,19 +32,21 @@
             color: #fff;
         }
         .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
             width: 100%;
-            max-width: 500px;
-            margin: 20px 0;
+            max-width: 1200px; /* Adjust max-width as needed */
+            margin-top: 20px;
             padding: 20px;
-            background-color: #000;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-            position: relative;
+            box-sizing: border-box;
         }
         .segment {
             margin-bottom: 20px;
-            display: none;
-            background-color: #000; /* Set the background color to black */
-            padding: 20px; /* Add padding for spacing */
+            padding: 20px;
+            background-color: #000;
+            flex: 0 0 calc(50% - 40px); /* Two segments per row */
+            max-width: calc(50% - 40px);
         }
         .segment h2 {
             font-size: 20px;
@@ -87,22 +89,38 @@
             background-color: #444;
         }
         #intro {
-            display: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
-            height: 100%;
+            max-width: 100%; /* Full width */
+            height: auto;
+            background-color: #000;
+            position: relative;
+            overflow: hidden;
         }
         #introVideo {
             width: 100%;
             height: auto;
             border-radius: 8px;
         }
-        .container.minimized #introVideo {
+        .intro-banner {
             width: 100%;
-            height: auto;
+            max-width: 1200px; /* Adjust max-width as needed */
+            margin: 0 auto;
             position: absolute;
             top: 0;
             left: 0;
-            transform: translateX(0);
+            transform: translateY(-50%);
+            z-index: 1;
+            display: none;
+        }
+        .intro-banner img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .container.minimized .intro-banner {
+            display: block;
         }
     </style>
 </head>
@@ -126,6 +144,9 @@
                 <source src="Stvlogo-intro2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            <div class="intro-banner">
+                <img src="logo.png" alt="Morning Show Logo">
+            </div>
         </div>
 
         <div id="news" class="segment">
@@ -188,6 +209,8 @@
             var segment = document.getElementById(segmentId);
             var mainContainer = document.getElementById('mainContainer');
             var headerTitle = document.getElementById('headerTitle');
+            var introVideo = document.getElementById('introVideo');
+            var introBanner = document.querySelector('.intro-banner');
            
             if (segmentId === 'intro') {
                 // Hide all other segments
@@ -196,32 +219,32 @@
                     seg.style.display = 'none';
                 });
 
-                // Hide header title initially
-                headerTitle.style.display = 'none';
-               
                 // Show the intro segment
-                segment.style.display = 'block';
+                segment.style.display = 'flex';
                
-                // Start blank for 3 seconds
-                setTimeout(function() {
-                    // Play the video
-                    var video = document.getElementById('introVideo');
-                    video.play();
-                   
-                    // Minimize after video ends
-                    video.onended = function() {
-                        mainContainer.classList.add('minimized');
-                        segment.classList.remove('fullscreen');
-                        headerTitle.style.display = 'block';
-                    };
-                }, 3000);
+                // Play the video
+                introVideo.play();
+               
+                // Minimize after video ends
+                introVideo.onended = function() {
+                    mainContainer.classList.add('minimized');
+                    introBanner.style.display = 'block';
+                    headerTitle.style.display = 'block';
+                };
             } else {
-                // Toggle visibility of the clicked segment
-                if (segment.style.display === "none" || segment.style.display === "") {
-                    segment.style.display = "block";
-                } else {
-                    segment.style.display = "none";
-                }
+                // Hide intro banner if switching away from intro
+                introBanner.style.display = 'none';
+
+                // Show the selected segment
+                segment.style.display = 'block';
+
+                // Hide all other segments
+                var allSegments = document.querySelectorAll('.segment');
+                allSegments.forEach(function(seg) {
+                    if (seg.id !== segmentId) {
+                        seg.style.display = 'none';
+                    }
+                });
             }
         }
 
