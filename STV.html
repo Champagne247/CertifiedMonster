@@ -23,6 +23,10 @@
             padding: 20px 0;
             text-align: center;
             border-bottom: 2px solid #555;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
         header h1 {
             margin: 0;
@@ -34,15 +38,14 @@
         .container {
             width: 100%;
             max-width: 500px;
-            margin: 20px 0;
+            margin-top: 80px; /* Adjust margin to accommodate fixed header */
             padding: 20px;
-            background-color: #000;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-            position: relative;
         }
         .segment {
-            margin-bottom: 20px;
             display: none;
+        }
+        .segment.active {
+            display: block;
         }
         .segment h2 {
             font-size: 20px;
@@ -70,6 +73,9 @@
         }
         .toggle-buttons {
             margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .toggle-buttons button {
             margin: 5px;
@@ -84,22 +90,7 @@
         .toggle-buttons button:hover {
             background-color: #444;
         }
-        #intro {
-            display: none;
-            width: 100%;
-            height: 100vh; /* Take full viewport height */
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 999; /* Ensure it's on top */
-        }
-        #introVideo {
-            width: 100%;
-            height: auto;
-            border-radius: 0; /* Remove border radius for full width */
-        }
         .banner {
-            display: none; /* Initially hide banner */
             width: 100%;
             background-color: #000;
             text-align: center;
@@ -107,16 +98,14 @@
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 99; /* Lower z-index than intro for stacking */
-        }
-        .container.minimized {
-            padding-top: 100vh; /* Adjust container padding to account for intro height */
+            z-index: 99;
+            display: none; /* Initially hidden */
         }
     </style>
 </head>
 <body>
     <header>
-        <h1 id="headerTitle">#SmartTokViral Morning Show</h1>
+        <h1>#SmartTokViral Morning Show</h1>
     </header>
 
     <div class="toggle-buttons">
@@ -176,46 +165,30 @@
     </div>
 
     <script>
+        var currentSegment = 'intro'; // Initialize current segment
+       
         function toggleSegment(segmentId) {
             var segment = document.getElementById(segmentId);
-            var mainContainer = document.getElementById('mainContainer');
-            var headerTitle = document.getElementById('headerTitle');
-            var introVideo = document.getElementById('introVideo');
+            var header = document.querySelector('header');
             var banner = document.getElementById('banner');
            
+            // Hide previous active segment
+            var currentActiveSegment = document.getElementById(currentSegment);
+            if (currentActiveSegment) {
+                currentActiveSegment.classList.remove('active');
+            }
+           
+            // Show current segment
+            segment.classList.add('active');
+            currentSegment = segmentId;
+           
+            // Show/hide banner based on segmentId
             if (segmentId === 'intro') {
-                // Hide all other segments
-                var allSegments = document.querySelectorAll('.segment');
-                allSegments.forEach(function(seg) {
-                    seg.style.display = 'none';
-                });
-
-                // Hide header title initially
-                headerTitle.style.display = 'none';
-               
-                // Show the intro segment
-                segment.style.display = 'block';
-               
-                // Start blank for 3 seconds
-                setTimeout(function() {
-                    // Play the video
-                    introVideo.play();
-                   
-                    // Minimize after video ends
-                    introVideo.onended = function() {
-                        mainContainer.classList.add('minimized');
-                        segment.classList.remove('fullscreen');
-                        headerTitle.style.display = 'block';
-                        banner.style.display = 'block'; // Show the banner
-                    };
-                }, 3000);
+                banner.style.display = 'none';
+                header.style.display = 'block'; // Show header
             } else {
-                // Toggle visibility of the clicked segment
-                if (segment.style.display === "none" || segment.style.display === "") {
-                    segment.style.display = "block";
-                } else {
-                    segment.style.display = "none";
-                }
+                banner.style.display = 'block'; // Show banner
+                header.style.display = 'none'; // Hide header
             }
         }
 
