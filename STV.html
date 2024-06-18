@@ -26,14 +26,14 @@
         }
         header h1 {
             margin: 0;
-            font-size: 36px;
+            font-size: 28px;  /* Adjusted for better fit */
             letter-spacing: 2px;
             text-transform: uppercase;
             color: #fff;
         }
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 500px;  /* Adjusted for better fit */
             margin: 20px 0;
             padding: 20px;
             background-color: #000;
@@ -45,14 +45,14 @@
             display: none;
         }
         .segment h2 {
-            font-size: 24px;
+            font-size: 20px;  /* Adjusted for better fit */
             margin-top: 0;
             border-bottom: 2px solid #555;
             padding-bottom: 5px;
             color: #fff;
         }
         .segment p {
-            font-size: 18px;
+            font-size: 16px;  /* Adjusted for better fit */
             line-height: 1.6;
             color: #ddd;
         }
@@ -121,7 +121,7 @@
     <div class="container" id="mainContainer">
         <div id="intro" class="segment">
             <video id="introVideo">
-                <source src="Stvlogo-intro2.mp4" type="video/mp4">
+                <source src="Screen_Recording_20240617_063516_Chrome.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -177,31 +177,4 @@
                 // Hide header title initially
                 headerTitle.style.display = 'none';
                
-                // Show the intro segment
-                segment.style.display = 'block';
-               
-                // Start blank for 3 seconds
-                setTimeout(function() {
-                    // Play the video
-                    var video = document.getElementById('introVideo');
-                    video.play();
-                   
-                    // Minimize after video ends
-                    video.onended = function() {
-                        mainContainer.classList.add('minimized');
-                        segment.classList.remove('fullscreen');
-                        headerTitle.style.display = 'block';
-                    };
-                }, 3000);
-            } else {
-                // Toggle visibility of the clicked segment
-                if (segment.style.display === "none" || segment.style.display === "") {
-                    segment.style.display = "block";
-                } else {
-                    segment.style.display = "none";
-                }
-            }
-        }
-    </script>
-</body>
-</html>
+         
