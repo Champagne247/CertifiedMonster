@@ -23,10 +23,6 @@
             padding: 20px 0;
             text-align: center;
             border-bottom: 2px solid #555;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
         }
         header h1 {
             margin: 0;
@@ -38,14 +34,15 @@
         .container {
             width: 100%;
             max-width: 500px;
-            margin-top: 80px; /* Adjust margin to accommodate fixed header */
+            margin: 20px 0;
             padding: 20px;
+            background-color: #000;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            position: relative;
         }
         .segment {
+            margin-bottom: 20px;
             display: none;
-        }
-        .segment.active {
-            display: block;
         }
         .segment h2 {
             font-size: 20px;
@@ -73,9 +70,6 @@
         }
         .toggle-buttons {
             margin: 20px 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
         }
         .toggle-buttons button {
             margin: 5px;
@@ -90,22 +84,29 @@
         .toggle-buttons button:hover {
             background-color: #444;
         }
-        .banner {
+        #intro {
+            display: none;
             width: 100%;
-            background-color: #000;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
+            height: 100%;
+        }
+        #introVideo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .container.minimized #introVideo {
+            width: 100%;
+            height: auto;
+            position: absolute;
             top: 0;
             left: 0;
-            z-index: 99;
-            display: none; /* Initially hidden */
+            transform: translateX(0);
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>#SmartTokViral Morning Show</h1>
+        <h1 id="headerTitle">#SmartTokViral Morning Show</h1>
     </header>
 
     <div class="toggle-buttons">
@@ -118,7 +119,7 @@
     </div>
 
     <div class="container" id="mainContainer">
-        <div id="intro" class="segment active"> <!-- Initial segment is active -->
+        <div id="intro" class="segment">
             <video id="introVideo">
                 <source src="Stvlogo-intro2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -160,41 +161,55 @@
         </div>
     </div>
 
-    <div class="banner" id="banner">
-        <h1>#SmartTokViral Morning Show</h1>
-    </div>
-
     <script>
-        var currentSegment = 'intro'; // Initialize current segment
-       
         function toggleSegment(segmentId) {
             var segment = document.getElementById(segmentId);
-            var header = document.querySelector('header');
-            var banner = document.getElementById('banner');
+            var mainContainer = document.getElementById('mainContainer');
+            var headerTitle = document.getElementById('headerTitle');
            
-            // Hide previous active segment
-            var currentActiveSegment = document.querySelector('.segment.active');
-            if (currentActiveSegment) {
-                currentActiveSegment.classList.remove('active');
-            }
-           
-            // Show current segment
-            segment.classList.add('active');
-            currentSegment = segmentId;
-           
-            // Show/hide banner based on segmentId
             if (segmentId === 'intro') {
-                banner.style.display = 'none';
-                header.style.display = 'block'; // Show header
+                // Hide all other segments
+                var allSegments = document.querySelectorAll('.segment');
+                allSegments.forEach(function(seg) {
+                    seg.style.display = 'none';
+                });
+
+                // Hide header title initially
+                headerTitle.style.display = 'none';
+               
+                // Show the intro segment
+                segment.style.display = 'block';
+               
+                // Start blank for 3 seconds
+                setTimeout(function() {
+                    // Play the video
+                    var video = document.getElementById('introVideo');
+                    video.play();
+                   
+                    // Minimize after video ends
+                    video.onended = function() {
+                        mainContainer.classList.add('minimized');
+                        segment.classList.remove('fullscreen');
+                        headerTitle.style.display = 'block';
+                    };
+                }, 3000);
             } else {
-                banner.style.display = 'block'; // Show banner
-                header.style.display = 'none'; // Hide header
+                // Toggle visibility of the clicked segment
+                if (segment.style.display === "none" || segment.style.display === "") {
+                    segment.style.display = "block";
+                } else {
+                    segment.style.display = "none";
+                }
             }
         }
 
         // Debugging
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Document loaded');
+            var buttons = document.querySelectorAll('.toggle-buttons button');
+            buttons.forEach(function(button) {
+                console.log(button.textContent + ' button loaded');
+            });
         });
     </script>
 </body>
