@@ -71,8 +71,14 @@
             margin: 10px 0;
             color: #fff;
         }
-        .toggle-button {
+        .toggle-buttons {
             margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .toggle-buttons button {
+            margin: 5px;
             padding: 10px 20px;
             font-size: 16px;
             border: 1px solid #555;
@@ -81,7 +87,7 @@
             background-color: #333;
             color: #fff;
         }
-        .toggle-button:hover {
+        .toggle-buttons button:hover {
             background-color: #444;
         }
         .banner {
@@ -102,7 +108,14 @@
         <h1>#SmartTokViral Morning Show</h1>
     </header>
 
-    <button class="toggle-button" onclick="toggleClosing()">Closing and Teasers</button>
+    <div class="toggle-buttons">
+        <button onclick="toggleSegment('intro')">Intro and Headlines</button>
+        <button onclick="toggleSegment('news')">Detailed News Report</button>
+        <button onclick="toggleSegment('community')">Community Spotlight</button>
+        <button onclick="toggleSegment('reviews')">Reviews and Recommendations</button>
+        <button onclick="toggleSegment('fun')">Fun and Interactive</button>
+        <button onclick="toggleSegment('closing')">Closing and Teasers</button>
+    </div>
 
     <div class="container" id="mainContainer">
         <div id="intro" class="segment">
@@ -154,8 +167,8 @@
     <script>
         var currentSegment = 'intro'; // Initialize current segment
        
-        function toggleClosing() {
-            var closingSegment = document.getElementById('closing');
+        function toggleSegment(segmentId) {
+            var segment = document.getElementById(segmentId);
             var header = document.querySelector('header');
             var banner = document.getElementById('banner');
            
@@ -165,13 +178,18 @@
                 currentActiveSegment.classList.remove('active');
             }
            
-            // Show closing segment
-            closingSegment.classList.add('active');
-            currentSegment = 'closing'; // Update current segment
+            // Show current segment
+            segment.classList.add('active');
+            currentSegment = segmentId;
            
-            // Show/hide banner and header
-            banner.style.display = 'block'; // Show banner
-            header.style.display = 'none'; // Hide header
+            // Show/hide banner based on segmentId
+            if (segmentId === 'intro') {
+                banner.style.display = 'none';
+                header.style.display = 'block'; // Show header
+            } else {
+                banner.style.display = 'block'; // Show banner
+                header.style.display = 'none'; // Hide header
+            }
         }
 
         // Debugging
