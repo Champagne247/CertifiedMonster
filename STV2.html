@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>#SmartTokViral Morning Show</title>
+    <title>#SmartTokViral Morning Show Control Panel</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap">
     <style>
         body {
@@ -63,12 +63,30 @@
             margin: 10px 0;
             color: #fff;
         }
+        .control-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .control-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+        }
+        .control-buttons button:hover {
+            background-color: #444;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>#SmartTokViral Morning Show</h1>
+        <h1>#SmartTokViral Morning Show Control Panel</h1>
     </header>
     
     <div class="segment" id="intro">
@@ -114,11 +132,32 @@
         <p>Summary of the show and what's coming up next...</p>
         <p>Thank you for joining us! Stay tuned for tomorrow's episode where we will discuss...</p>
     </div>
+
+    <div class="control-buttons">
+        <button onclick="showSegment('intro')">Show Intro</button>
+        <button onclick="showSegment('news')">Show News</button>
+        <button onclick="showSegment('community')">Show Community</button>
+        <button onclick="showSegment('reviews')">Show Reviews</button>
+        <button onclick="showSegment('fun')">Show Fun</button>
+        <button onclick="showSegment('closing')">Show Closing</button>
+    </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('introVideo').play();
         });
+
+        function showSegment(segmentId) {
+            // Hide all segments
+            var segments = document.querySelectorAll('.segment');
+            segments.forEach(function(seg) {
+                seg.style.display = 'none';
+            });
+
+            // Show the selected segment
+            var segmentToShow = document.getElementById(segmentId);
+            segmentToShow.style.display = 'block';
+        }
     </script>
 </body>
 </html>
