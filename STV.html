@@ -21,6 +21,7 @@
         .toggle-buttons {
             width: 100%;
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             z-index: 100;
             padding: 10px 0;
@@ -36,6 +37,7 @@
             cursor: pointer;
             background-color: #333;
             color: #fff;
+            flex: 1 1 150px;
         }
         .toggle-buttons button:hover {
             background-color: #444;
@@ -109,6 +111,14 @@
             border-radius: 5px;
             margin: 10px 0;
             color: #fff;
+        }
+        @media (min-width: 768px) {
+            .toggle-buttons {
+                justify-content: space-around;
+            }
+            .toggle-buttons button {
+                flex: none;
+            }
         }
     </style>
 </head>
