@@ -4,92 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>#SmartTokViral Morning Show</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap">
     <style>
         body {
+            font-family: 'Times New Roman', Times, serif;
             background-color: #000;
             color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+        .toggle-buttons {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            z-index: 100;
+            padding: 10px 0;
+            background-color: #000;
+            border-bottom: 2px solid #555;
+            position: fixed;
+            top: 0;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .toggle-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+            white-space: nowrap;
+        }
+        .toggle-buttons button:hover {
+            background-color: #444;
+        }
+        header {
+            width: 100%;
+            background-color: #000;
+            padding: 20px 0;
             text-align: center;
+            border-bottom: 2px solid #555;
+            margin-top: 60px; /* Adjusted for fixed button bar */
         }
-        .header, .section {
-            margin-bottom: 2rem;
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
         }
-        .section img {
-            max-width: 100%;
+        #intro {
+            width: 100%;
+            height: auto;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #introVideo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .intro-banner {
+            width: 100%;
+            height: auto;
+            background-color: #000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .intro-banner img {
+            width: 100%;
             height: auto;
         }
-        .buttons-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 2rem;
+        .segment {
+            width: 100%;
+            margin: 10px 0;
+            padding: 20px;
+            background-color: #000;
+            display: none;
         }
-        .buttons-container button {
-            margin: 0.5rem;
-            flex: 1 1 calc(33% - 1rem);
-            min-width: 150px;
+        .segment h2 {
+            font-size: 20px;
+            margin-top: 0;
+            border-bottom: 2px solid #555;
+            padding-bottom: 5px;
+            color: #fff;
+        }
+        .segment p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .segment img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .segment .highlight {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            color: #fff;
         }
     </style>
 </head>
 <body>
-    <div class="header">
+    <div class="toggle-buttons">
+        <button onclick="toggleSegment('intro')">Intro and Headlines</button>
+        <button onclick="toggleSegment('news')">Detailed News Report</button>
+        <button onclick="toggleSegment('community')">Community Spotlight</button>
+        <button onclick="toggleSegment('reviews')">Reviews and Recommendations</button>
+        <button onclick="toggleSegment('fun')">Fun and Interactive</button>
+        <button onclick="toggleSegment('closing')">Closing and Teasers</button>
+    </div>
+
+    <header>
         <h1>#SmartTokViral Morning Show</h1>
-        <img src="https://via.placeholder.com/800x400?text=SmartTokViral+Logo" alt="SmartTokViral Logo">
+    </header>
+    
+    <div id="intro">
+        <video id="introVideo" autoplay>
+            <source src="Stvlogo-intro2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="intro-banner" id="introBanner">
+            <img src="STVbanner.jpg" alt="STV Banner">
+        </div>
     </div>
-
-    <div class="buttons-container">
-        <button class="btn btn-secondary" onclick="showSection('intro')">Intro and Headlines</button>
-        <button class="btn btn-secondary" onclick="showSection('news')">Detailed News Report</button>
-        <button class="btn btn-secondary" onclick="showSection('spotlight')">Community Spotlight</button>
-        <button class="btn btn-secondary" onclick="showSection('reviews')">Reviews and Recommendations</button>
-        <button class="btn btn-secondary" onclick="showSection('fun')">Fun and Interactive</button>
-        <button class="btn btn-secondary" onclick="showSection('closing')">Closing and Teasers</button>
+    
+    <div class="segment" id="news">
+        <h2>Detailed News Report</h2>
+        <img src="https://via.placeholder.com/800x400" alt="News Image">
+        <p>In-depth coverage of today's significant news story...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan tortor. Duis cursus erat ac massa tincidunt, vel tincidunt lorem facilisis.</p>
     </div>
-
-    <div id="intro" class="section" style="display: none;">
-        <h2>Welcome to Our Community!</h2>
-        <p>Dear Members,</p>
-        <p>We are thrilled to have you join us in this vibrant community, created by our esteemed founder, Sonnydee...</p>
-        <img src="https://via.placeholder.com/800x400?text=Community+Welcome" alt="Community Welcome">
-    </div>
-
-    <div id="news" class="section" style="display: none;">
-        <h2>Community Announcements</h2>
-        <p>🎉 Welcome Early Birds! 🎉</p>
-        <p>A warm welcome to all the early birds who have joined us here! Your presence is truly appreciated...</p>
-        <img src="https://via.placeholder.com/800x400?text=Community+Announcements" alt="Community Announcements">
-    </div>
-
-    <div id="spotlight" class="section" style="display: none;">
+    
+    <div class="segment" id="community">
         <h2>Community Spotlight</h2>
-        <p>Featuring new and active members who contribute significantly to the community...</p>
-        <img src="https://via.placeholder.com/800x400?text=Community+Spotlight" alt="Community Spotlight">
+        <img src="https://via.placeholder.com/800x400" alt="Community Image">
+        <p>Highlighting a community member, local business, or event...</p>
+        <p>Meet Jane Doe, a local artist making waves with her unique style and community engagement...</p>
     </div>
-
-    <div id="reviews" class="section" style="display: none;">
+    
+    <div class="segment" id="reviews">
         <h2>Reviews and Recommendations</h2>
-        <p>Reviewing tools or services that help grow TikTok presence, such as engagement apps or content creation tools...</p>
-        <img src="https://via.placeholder.com/800x400?text=Reviews+and+Recommendations" alt="Reviews and Recommendations">
+        <img src="https://via.placeholder.com/800x400" alt="Product Image">
+        <p>Detailed review of a trending product or service...</p>
+        <div class="highlight">Product of the week: The latest gadget everyone is talking about!</div>
     </div>
-
-    <div id="fun" class="section" style="display: none;">
+    
+    <div class="segment" id="fun">
         <h2>Fun and Interactive</h2>
-        <p>Join us in quizzes, polls, challenges, and interactive discussions...</p>
-        <img src="https://via.placeholder.com/800x400?text=Fun+and+Interactive" alt="Fun and Interactive">
+        <p>Engage with fun polls, quizzes, and challenges...</p>
+        <p>Quiz: What kind of #SmartTokViral fan are you?</p>
+        <p>Poll: What's your favorite segment of the show?</p>
     </div>
-
-    <div id="closing" class="section" style="display: none;">
+    
+    <div class="segment" id="closing">
         <h2>Closing and Teasers</h2>
-        <p>Stay tuned for more exciting updates and announcements...</p>
-        <img src="https://via.placeholder.com/800x400?text=Closing+and+Teasers" alt="Closing and Teasers">
+        <p>Summary of the show and what's coming up next...</p>
+        <p>Thank you for joining us! Stay tuned for tomorrow's episode where we will discuss...</p>
     </div>
-
+    
     <script>
-        function showSection(id) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
+        function toggleSegment(segmentId) {
+            var segment = document.getElementById(segmentId);
+            var introVideo = document.getElementById('introVideo');
+            var introBanner = document.getElementById('introBanner');
+    
+            if (segmentId === 'intro') {
+                introVideo.play();
+    
+                introVideo.onended = function() {
+                    introBanner.style.display = 'flex';
+                    introVideo.style.display = 'none';
+                    document.getElementById('intro').style.height = 'auto';
+                    document.getElementById('intro').style.width = '100%';
+                };
+            } else {
+                var segments = document.querySelectorAll('.segment');
+                segments.forEach(function(seg) {
+                    seg.style.display = 'none';
+                });
+                segment.style.display = 'block';
+            }
         }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('introVideo').play();
+        });
     </script>
 </body>
 </html>
