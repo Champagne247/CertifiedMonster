@@ -21,12 +21,13 @@
         .toggle-buttons {
             width: 100%;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             z-index: 100;
             padding: 10px 0;
             background-color: #000;
             border-bottom: 2px solid #555;
+            position: fixed;
+            top: 0;
         }
         .toggle-buttons button {
             margin: 5px;
@@ -37,7 +38,6 @@
             cursor: pointer;
             background-color: #333;
             color: #fff;
-            flex: 1 1 150px;
         }
         .toggle-buttons button:hover {
             background-color: #444;
@@ -48,6 +48,7 @@
             padding: 20px 0;
             text-align: center;
             border-bottom: 2px solid #555;
+            margin-top: 60px; /* Adjusted for fixed button bar */
         }
         header h1 {
             margin: 0;
@@ -112,31 +113,9 @@
             margin: 10px 0;
             color: #fff;
         }
-        @media (min-width: 768px) {
-            .toggle-buttons {
-                justify-content: space-around;
-            }
-            .toggle-buttons button {
-                flex: none;
-            }
-        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>#SmartTokViral Morning Show</h1>
-    </header>
-    
-    <div id="intro">
-        <video id="introVideo" autoplay>
-            <source src="Intro-Full.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="intro-banner" id="introBanner">
-            <img src="STVbanner.jpg" alt="STV Banner">
-        </div>
-    </div>
-    
     <div class="toggle-buttons">
         <button onclick="toggleSegment('intro')">Intro and Headlines</button>
         <button onclick="toggleSegment('news')">Detailed News Report</button>
@@ -144,6 +123,20 @@
         <button onclick="toggleSegment('reviews')">Reviews and Recommendations</button>
         <button onclick="toggleSegment('fun')">Fun and Interactive</button>
         <button onclick="toggleSegment('closing')">Closing and Teasers</button>
+    </div>
+
+    <header>
+        <h1>#SmartTokViral Morning Show</h1>
+    </header>
+    
+    <div id="intro">
+        <video id="introVideo" autoplay>
+            <source src="Stvlogo-intro2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="intro-banner" id="introBanner">
+            <img src="STVbanner.jpg" alt="STV Banner">
+        </div>
     </div>
     
     <div class="segment" id="news">
@@ -205,15 +198,7 @@
         }
     
         document.addEventListener('DOMContentLoaded', function() {
-            var introVideo = document.getElementById('introVideo');
-            introVideo.play();
-            introVideo.onended = function() {
-                document.getElementById('intro').style.display = 'none';
-                var segments = document.querySelectorAll('.segment');
-                segments.forEach(function(seg) {
-                    seg.style.display = 'none';
-                });
-            };
+            document.getElementById('introVideo').play();
         });
     </script>
 </body>
