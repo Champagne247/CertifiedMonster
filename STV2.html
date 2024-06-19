@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#SmartTokViral Morning Show</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+        header {
+            width: 100%;
+            background-color: #000;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #555;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .segment {
+            width: 100%;
+            margin: 10px 0;
+            padding: 20px;
+            background-color: #000;
+            display: none;
+        }
+        .segment h2 {
+            font-size: 20px;
+            margin-top: 0;
+            border-bottom: 2px solid #555;
+            padding-bottom: 5px;
+            color: #fff;
+        }
+        .segment p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .segment img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .segment .highlight {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>#SmartTokViral Morning Show</h1>
+    </header>
+    
+    <div class="segment" id="intro">
+        <video id="introVideo" autoplay>
+            <source src="Stvlogo-intro2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="intro-banner" id="introBanner">
+            <img src="STVbanner.jpg" alt="STV Banner">
+        </div>
+    </div>
+    
+    <div class="segment" id="news">
+        <h2>Detailed News Report</h2>
+        <img src="https://via.placeholder.com/800x400" alt="News Image">
+        <p>In-depth coverage of today's significant news story...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan tortor. Duis cursus erat ac massa tincidunt, vel tincidunt lorem facilisis.</p>
+    </div>
+    
+    <div class="segment" id="community">
+        <h2>Community Spotlight</h2>
+        <img src="https://via.placeholder.com/800x400" alt="Community Image">
+        <p>Highlighting a community member, local business, or event...</p>
+        <p>Meet Jane Doe, a local artist making waves with her unique style and community engagement...</p>
+    </div>
+    
+    <div class="segment" id="reviews">
+        <h2>Reviews and Recommendations</h2>
+        <img src="https://via.placeholder.com/800x400" alt="Product Image">
+        <p>Detailed review of a trending product or service...</p>
+        <div class="highlight">Product of the week: The latest gadget everyone is talking about!</div>
+    </div>
+    
+    <div class="segment" id="fun">
+        <h2>Fun and Interactive</h2>
+        <p>Engage with fun polls, quizzes, and challenges...</p>
+        <p>Quiz: What kind of #SmartTokViral fan are you?</p>
+        <p>Poll: What's your favorite segment of the show?</p>
+    </div>
+    
+    <div class="segment" id="closing">
+        <h2>Closing and Teasers</h2>
+        <p>Summary of the show and what's coming up next...</p>
+        <p>Thank you for joining us! Stay tuned for tomorrow's episode where we will discuss...</p>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('introVideo').play();
+        });
+    </script>
+</body>
+</html>
