@@ -15,15 +15,18 @@
         header {
             background-color: #333;
             color: white;
-            padding: 0; /* Removed padding to reduce gap */
+            padding: 0;
             text-align: center;
             position: relative;
         }
         header img {
-            width: 100%; /* Ensures image fits the width of the container */
-            height: auto; /* Keeps the aspect ratio intact */
-            margin: 0; /* Removes any margin around the image */
+            width: 100%;
+            max-width: 800px; /* Set a max width for the image */
+            height: auto;
+            margin: 0 auto;
+            display: block; /* Centers the image */
             border-radius: 8px;
+            padding: 10px; /* Adds a little gray padding around the image */
         }
         main {
             padding: 20px;
