@@ -161,6 +161,22 @@
 
 </main>
 
+<!-- Background Audio -->
+<audio id="background-audio" loop>
+    <source src="path-to-your-uploaded-audio-file/ElevenLabs_202___se0_b_m2.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    // Wait for 5 seconds and start playing the background audio
+    window.onload = function() {
+        setTimeout(function() {
+            var audio = document.getElementById('background-audio');
+            audio.play();  // Start playing the audio after 5 seconds
+        }, 5000); // 5000 milliseconds (5 seconds)
+    }
+</script>
+
 <footer>
     <p>&copy; 2025 Vision Board Guide. All Rights Reserved.</p>
 </footer>
