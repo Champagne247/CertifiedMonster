@@ -167,15 +167,13 @@
     Your browser does not support the audio element.
 </audio>
 
-<!-- Play Button -->
+<!-- Play Button (Test) -->
 <button id="playAudioButton" onclick="playAudio()">Play Audio</button>
 
 <script>
     function playAudio() {
         var audio = document.getElementById('background-audio');
-        setTimeout(function() {
-            audio.play();  // Play after 5 seconds
-        }, 5000);
+        audio.play(); // Play the audio directly when button is clicked
     }
 </script>
 
