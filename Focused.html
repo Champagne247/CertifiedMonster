@@ -147,11 +147,6 @@
 </head>
 <body>
 
-<!-- Visitor Counter Section -->
-<div class="counter" id="counter">
-    Visitors: <span id="visitorCount">0</span>
-</div>
-
 <header>
     <div class="vision-board-description">
         IF YOU CAN SEE IT AND BELIEVE IT YOU CAN ACHIEVE IT!
@@ -233,6 +228,23 @@
 
 </main>
 
+<!-- Visitor Counter and Comment Section (Moved to Bottom) -->
+<div class="counter" id="counter">
+    Visitors: <span id="visitorCount">0</span>
+</div>
+
+<!-- Comment Section -->
+<section class="comment-section">
+    <h2>Leave a Comment</h2>
+    <div class="comment-form">
+        <textarea id="commentInput" rows="4" placeholder="Leave your comment here..." class="form-control"></textarea>
+        <button id="submitComment" class="btn btn-primary mt-2">Post Comment</button>
+    </div>
+    <ul id="commentList" class="comment-list">
+        <!-- Comments will appear here -->
+    </ul>
+</section>
+
 <!-- Background Audio -->
 <audio id="background-audio" loop muted>
     <source src="ElevenLabs_2025-01-05T00_57_59_Bill_pre_s50_sb75_se0_b_m2.mp3" type="audio/mp3">
@@ -301,24 +313,6 @@
 <footer>
     <p>&copy; 2025 Vision Board Guide. All Rights Reserved.</p>
 </footer>
-
-<!-- Modal for audio permission -->
-<div class="modal" tabindex="-1" role="dialog" aria-hidden="false" id="modal1">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Audio Permission</h5>
-        </div>
-        <div class="modal-body">
-          <p>This webpage is requesting audio permissions to play a sound when the page loads. If you approve this action click in the play sound button</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="nav-music-start">Play sound</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-modal">Deny</button>
-        </div>
-      </div>
-    </div>
-</div>
 
 </body>
 </html>
